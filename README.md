@@ -26,18 +26,10 @@ Create a function `calculate_tfidf(texts)` that takes a list of text strings and
 
 ---
 
-Here’s a revised task focusing on using Word2Vec for text representation instead of an RNN. This task will guide students through training a Word2Vec model on a set of text data and using it to generate word embeddings.
-
----
-
 ## **Task 5: Training a Word2Vec Model for Text Representation**
 
 Create functions`train_word2vec(sentences)` that trains a Word2Vec model on a list of tokenized sentences. The function should return the trained Word2Vec model and demonstrate how to find the most similar words to a given word using the model.
 Define the function `find_similar_words(model, word)` which finds words similar to the given word using the trained Word2Vec model.
-
----
-
-Here is a task for working with N-grams, including problem definition, solution, and unit tests using pytest.
 
 ---
 
