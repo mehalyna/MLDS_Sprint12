@@ -33,7 +33,7 @@ Define the function `find_similar_words(model, word)` which finds words similar 
 
 ---
 
-### **Task: N-gram Generation and Frequency Counting**
+### **Task 6: N-gram Generation and Frequency Counting**
 
 **Problem Definition:**
 Write a function `generate_ngrams(text, n)` that takes a string of text and an integer `n` as inputs and returns a list of N-grams. Additionally, write a function `count_ngrams(ngrams)` that counts the frequency of each N-gram and returns the result as a dictionary.
