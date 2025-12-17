@@ -1,21 +1,35 @@
+"""Task 2: Stemming and Lemmatization."""
+from typing import Dict, List
 from nltk.stem import PorterStemmer, WordNetLemmatizer
-import nltk
-
-# Download required resources
-nltk.download('punkt')
-nltk.download('wordnet')
 
 
-def stem_and_lemmatize(tokens):
+def stem_and_lemmatize(tokens: List[str]) -> Dict[str, List[str]]:
     """
-    Applies stemming and lemmatization to the input tokens.
+    Apply stemming and lemmatization to input tokens.
 
     Args:
-    tokens (list): A list of tokens (words).
+        tokens (List[str]): A list of tokens (words).
 
     Returns:
-    dict: A dictionary with original, stemmed, and lemmatized tokens.
+        Dict[str, List[str]]: A dictionary with 'original', 'stemmed', and 
+                             'lemmatized' token lists.
+
+    Raises:
+        TypeError: If tokens is not a list.
+        ValueError: If tokens is empty or contains non-string elements.
+
+    Example:
+        >>> stem_and_lemmatize(['running', 'cats'])
+        {'original': ['running', 'cats'], 'stemmed': ['run', 'cat'], 
+         'lemmatized': ['running', 'cat']}
     """
+    if not isinstance(tokens, list):
+        raise TypeError("Input tokens must be a list")
+    if not tokens:
+        raise ValueError("Input tokens cannot be empty")
+    if not all(isinstance(token, str) for token in tokens):
+        raise ValueError("All tokens must be strings")
+
     stemmer = PorterStemmer()
     lemmatizer = WordNetLemmatizer()
 
@@ -30,4 +44,13 @@ def stem_and_lemmatize(tokens):
 
 
 if __name__ == "__main__":
-    print(stem_and_lemmatize(['goes', 'worlds', 'done', 'being', 'undefined']))
+    # Download required NLTK resources (only when running as main)
+    import nltk
+    nltk.download('punkt', quiet=True)
+    nltk.download('wordnet', quiet=True)
+    
+    example_tokens = ['goes', 'worlds', 'done', 'being', 'undefined']
+    result = stem_and_lemmatize(example_tokens)
+    print(f"Original: {result['original']}")
+    print(f"Stemmed: {result['stemmed']}")
+    print(f"Lemmatized: {result['lemmatized']}")

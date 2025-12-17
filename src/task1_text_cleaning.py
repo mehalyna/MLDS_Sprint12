@@ -1,18 +1,32 @@
+"""Task 1: Text Cleaning and Tokenization."""
 import re
+from typing import List
 from nltk.tokenize import word_tokenize
 
 
-def clean_and_tokenize(text):
+def clean_and_tokenize(text: str) -> List[str]:
     """
-    Cleans the input text by removing punctuation and converting it to lowercase,
-    then tokenizes it into individual words.
+    Clean text by removing punctuation, converting to lowercase, and tokenizing.
 
     Args:
-    text (str): The input text string.
+        text (str): The input text string to clean and tokenize.
 
     Returns:
-    list: A list of tokens (words).
+        List[str]: A list of tokens (words).
+
+    Raises:
+        ValueError: If text is None or empty.
+        TypeError: If text is not a string.
+
+    Example:
+        >>> clean_and_tokenize("Hello, World!")
+        ['hello', 'world']
     """
+    if not isinstance(text, str):
+        raise TypeError("Input text must be a string")
+    if not text or not text.strip():
+        raise ValueError("Input text cannot be empty")
+
     # Remove punctuation and convert to lowercase
     cleaned_text = re.sub(r'[^\w\s]', '', text.lower())
     # Tokenize the text
@@ -21,6 +35,9 @@ def clean_and_tokenize(text):
 
 
 if __name__ == "__main__":
-    print(clean_and_tokenize("Cleans the input text by removing punctuation and converting it to lowercase, \
-    then tokenizes it into individual words."))
+    example_text = (
+        "Cleans the input text by removing punctuation and converting it to lowercase, "
+        "then tokenizes it into individual words."
+    )
+    print(clean_and_tokenize(example_text))
 

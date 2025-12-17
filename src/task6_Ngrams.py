@@ -1,49 +1,91 @@
-from nltk import ngrams
+"""Task 6: N-gram Generation and Frequency Counting."""
+from typing import List, Tuple, Dict
 from collections import Counter
-import nltk
+from nltk import ngrams
+from nltk.tokenize import word_tokenize
 
-nltk.download('punkt')
 
-
-def generate_ngrams(text, n):
+def generate_ngrams(text: str, n: int) -> List[Tuple[str, ...]]:
     """
-    Generates N-grams from the input text.
+    Generate N-grams from the input text.
 
     Args:
-    text (str): The input text string.
-    n (int): The size of the N-grams (e.g., n=2 for bigrams, n=3 for trigrams).
+        text (str): The input text string.
+        n (int): The size of the N-grams (e.g., n=2 for bigrams, n=3 for trigrams).
 
     Returns:
-    list: A list of N-grams.
+        List[Tuple[str, ...]]: A list of N-grams as tuples.
+
+    Raises:
+        TypeError: If text is not a string or n is not an integer.
+        ValueError: If text is empty or n is less than 1.
+
+    Example:
+        >>> generate_ngrams("I love NLP", 2)
+        [('I', 'love'), ('love', 'NLP')]
     """
+    if not isinstance(text, str):
+        raise TypeError("Text must be a string")
+    if not isinstance(n, int):
+        raise TypeError("N must be an integer")
+    if not text or not text.strip():
+        raise ValueError("Text cannot be empty")
+    if n < 1:
+        raise ValueError("N must be at least 1")
+
     # Tokenize the text
-    tokens = nltk.word_tokenize(text)
+    tokens = word_tokenize(text)
+    
     # Generate N-grams
     n_grams = list(ngrams(tokens, n))
     return n_grams
 
 
-def count_ngrams(ngrams):
+def count_ngrams(ngrams_list: List[Tuple[str, ...]]) -> Dict[Tuple[str, ...], int]:
     """
-    Counts the frequency of each N-gram in the list.
+    Count the frequency of each N-gram in the list.
 
     Args:
-    ngrams (list): A list of N-grams.
+        ngrams_list (List[Tuple[str, ...]]): A list of N-grams.
 
     Returns:
-    dict: A dictionary where keys are N-grams and values are their frequencies.
+        Dict[Tuple[str, ...], int]: A dictionary where keys are N-grams and 
+                                     values are their frequencies.
+
+    Raises:
+        TypeError: If ngrams_list is not a list.
+        ValueError: If ngrams_list is empty.
+
+    Example:
+        >>> ngrams_list = [('I', 'love'), ('love', 'NLP'), ('I', 'love')]
+        >>> count_ngrams(ngrams_list)
+        {('I', 'love'): 2, ('love', 'NLP'): 1}
     """
+    if not isinstance(ngrams_list, list):
+        raise TypeError("N-grams list must be a list")
+    if not ngrams_list:
+        raise ValueError("N-grams list cannot be empty")
+
     # Count the frequency of N-grams
-    ngram_counts = Counter(ngrams)
+    ngram_counts = Counter(ngrams_list)
     return dict(ngram_counts)
 
 
-text = "I love NLP and learning NLP techniques"
+if __name__ == "__main__":
+    # Download required NLTK resources (only when running as main)
+    import nltk
+    nltk.download('punkt', quiet=True)
 
-# Generate bigrams
-bigrams = generate_ngrams(text, 2)
-print("Bigrams:", bigrams)
+    text = "I love NLP and learning NLP techniques"
 
-# Count bigrams
-bigram_counts = count_ngrams(bigrams)
-print("Bigram counts:", bigram_counts)
+    # Generate bigrams
+    bigrams = generate_ngrams(text, 2)
+    print("Bigrams:", bigrams)
+
+    # Count bigrams
+    bigram_counts = count_ngrams(bigrams)
+    print("\nBigram counts:", bigram_counts)
+    
+    # Generate trigrams
+    trigrams = generate_ngrams(text, 3)
+    print("\nTrigrams:", trigrams)
