@@ -1,6 +1,8 @@
 # Week 3: Free Text and NLP in Data Science
 
+
 A comprehensive collection of Natural Language Processing (NLP) tasks focusing on fundamental text processing techniques, vectorization methods, and word embeddings.
+
 ---
 
 ## **Setup and Installation**
