@@ -1,6 +1,141 @@
 # Week 3: Free Text and NLP in Data Science
 
 A comprehensive collection of Natural Language Processing (NLP) tasks focusing on fundamental text processing techniques, vectorization methods, and word embeddings.
+---
+
+## **Setup and Installation**
+
+### **Prerequisites**
+- Python 3.11+
+- Virtual environment (recommended)
+
+### **Installation Steps**
+
+1. Create and activate virtual environment:
+```bash
+python -m venv venv
+.\venv\Scripts\Activate.ps1  # Windows PowerShell
+```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Download required NLTK data (done automatically when running individual tasks):
+```python
+import nltk
+nltk.download('punkt')
+nltk.download('wordnet')
+```
+
+---
+
+## **Running Tests**
+
+Execute all tests:
+```bash
+python -m pytest tests/ -v
+```
+
+Run specific test file:
+```bash
+python -m pytest tests/test_task1.py -v
+```
+
+Run with coverage:
+```bash
+python -m pytest tests/ --cov=src --cov-report=html
+```
+
+---
+
+## **Project Structure**
+
+```
+MLDS_Sprint12/
+├── src/
+│   ├── task1_text_cleaning.py      # Text cleaning and tokenization
+│   ├── task2_stemm_lemma.py        # Stemming and lemmatization
+│   ├── task3_BoW.py                # Bag of Words implementation
+│   ├── task4_TFIDF.py              # TF-IDF calculation
+│   ├── task5_word2vec.py           # Word2Vec training and similarity
+│   ├── task6_Ngrams.py             # N-gram generation and counting
+│   └── task7_nlp_pipeline.py       # Integrated NLP pipeline (Essential)
+├── tests/
+│   ├── test_task1.py               # 7 tests for text cleaning
+│   ├── test_task2.py               # 8 tests for stemming/lemmatization
+│   ├── test_task3.py               # 8 tests for BoW
+│   ├── test_task4.py               # 8 tests for TF-IDF
+│   ├── test_task5.py               # 10 tests for Word2Vec
+│   ├── test_task6.py               # 13 tests for N-grams
+│   └── test_task7.py               # 33 tests for NLP pipeline
+├── requirements.txt                 # Project dependencies
+├── README.md                        # This file
+└── venv/                           # Virtual environment (not in git)
+```
+
+---
+
+## **Dependencies**
+
+- **pandas** ~=2.2.1 - Data manipulation and DataFrame operations
+- **scikit-learn** ~=1.4.2 - BoW and TF-IDF vectorization
+- **nltk** ~=3.8.1 - Text tokenization, stemming, and lemmatization
+- **gensim** ~=4.3.3 - Word2Vec model training
+- **pytest** ~=8.3.2 - Unit testing framework
+
+---
+
+## **Quick Start - Running the Streamlit App**
+
+### **Setup Instructions**
+
+1. **Create and activate a virtual environment:**
+
+   **Windows:**
+   ```bash
+   python -m venv .venv
+   .venv\Scripts\activate
+   ```
+
+   **macOS/Linux:**
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate
+   ```
+
+2. **Install required packages:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Install Streamlit (if not already included):**
+   ```bash
+   pip install streamlit
+   ```
+
+4. **Download required NLTK data:**
+   ```python
+   python -c "import nltk; nltk.download('punkt'); nltk.download('wordnet')"
+   ```
+
+5. **Run the Streamlit app:**
+   ```bash
+   streamlit run app.py
+   ```
+
+6. **Access the app:**
+   - The app will automatically open in your default browser
+   - Or navigate manually to: `http://localhost:8501`
+
+### **Using the App**
+
+The Streamlit app provides an interactive interface to demonstrate all 7 NLP tasks:
+- Select a task from the dropdown menu
+- Enter your own text or use the provided examples
+- Click the corresponding button to see results
+- Explore different parameters and options for each task
 
 ---
 
@@ -390,91 +525,6 @@ print(f"Top keywords: {keywords}")
 4. **Feature Importance**: Identifying key terms using TF-IDF scores
 5. **Corpus Statistics**: Calculating vocabulary diversity and coverage
 6. **Scalability**: Designing for larger document collections
-
-
----
-
-## **Setup and Installation**
-
-### **Prerequisites**
-- Python 3.11+
-- Virtual environment (recommended)
-
-### **Installation Steps**
-
-1. Create and activate virtual environment:
-```bash
-python -m venv venv
-.\venv\Scripts\Activate.ps1  # Windows PowerShell
-```
-
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-3. Download required NLTK data (done automatically when running individual tasks):
-```python
-import nltk
-nltk.download('punkt')
-nltk.download('wordnet')
-```
-
----
-
-## **Running Tests**
-
-Execute all tests:
-```bash
-python -m pytest tests/ -v
-```
-
-Run specific test file:
-```bash
-python -m pytest tests/test_task1.py -v
-```
-
-Run with coverage:
-```bash
-python -m pytest tests/ --cov=src --cov-report=html
-```
-
----
-
-## **Project Structure**
-
-```
-MLDS_Sprint12/
-├── src/
-│   ├── task1_text_cleaning.py      # Text cleaning and tokenization
-│   ├── task2_stemm_lemma.py        # Stemming and lemmatization
-│   ├── task3_BoW.py                # Bag of Words implementation
-│   ├── task4_TFIDF.py              # TF-IDF calculation
-│   ├── task5_word2vec.py           # Word2Vec training and similarity
-│   ├── task6_Ngrams.py             # N-gram generation and counting
-│   └── task7_nlp_pipeline.py       # Integrated NLP pipeline (Essential)
-├── tests/
-│   ├── test_task1.py               # 7 tests for text cleaning
-│   ├── test_task2.py               # 8 tests for stemming/lemmatization
-│   ├── test_task3.py               # 8 tests for BoW
-│   ├── test_task4.py               # 8 tests for TF-IDF
-│   ├── test_task5.py               # 10 tests for Word2Vec
-│   ├── test_task6.py               # 13 tests for N-grams
-│   └── test_task7.py               # 33 tests for NLP pipeline
-├── requirements.txt                 # Project dependencies
-├── README.md                        # This file
-└── venv/                           # Virtual environment (not in git)
-```
-
----
-
-## **Dependencies**
-
-- **pandas** ~=2.2.1 - Data manipulation and DataFrame operations
-- **scikit-learn** ~=1.4.2 - BoW and TF-IDF vectorization
-- **nltk** ~=3.8.1 - Text tokenization, stemming, and lemmatization
-- **gensim** ~=4.3.3 - Word2Vec model training
-- **pytest** ~=8.3.2 - Unit testing framework
 
 ---
 
